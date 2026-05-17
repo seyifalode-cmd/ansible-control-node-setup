@@ -125,7 +125,7 @@ mysql -u Bob -ppa55word bobdata -e "SELECT * FROM SteveJobsQuotes LIMIT 5;"
 
 ```bash
 # From the Ansible control node, clone this repository
-git clone https://github.com/Seyifunmi0604/ansible-control-node-setup.git
+git clone https://github.com/seyifalode-cmd/ansible-control-node-setup.git
 cd ansible-control-node-setup
 
 # Run the web server setup
