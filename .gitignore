@@ -6,3 +6,5 @@
 **/*.key
 **/.env
 **/kubeconfig
+
+.DS_Store

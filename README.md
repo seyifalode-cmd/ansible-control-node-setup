@@ -1,4 +1,6 @@
-# **Ansible Control Node Setup**
+# Ansible Control Node Setup
+
+Oluwaseyi Michael Falode | Cloud & DevOps Engineering | Toronto, ON
 
 Ansible playbooks executed from an EC2 control node to install and configure Apache (httpd) on web servers and MariaDB on database servers across a multi-node inventory — including database creation, user provisioning, and SQL data import.
 
@@ -102,6 +104,8 @@ ansible all -i host.ini -m ping
 ansible-playbook -i host.ini install_httpd.yaml
 
 # Run the database playbook against databases group
+# (the DB user password is read from the environment, never stored in the repo)
+export MARIADB_USER_PASSWORD='<strong-password>'
 ansible-playbook -i host.ini install_mariadb.yaml
 
 # Verify httpd is running on a web node
@@ -109,7 +113,7 @@ curl http://<webserver-public-ip>
 
 # Verify MariaDB is running on a database node
 ssh -i ~/.ssh/id_rsa ec2-user@<db-node-public-ip>
-mysql -u Bob -ppa55word bobdata -e "SELECT * FROM SteveJobsQuotes LIMIT 5;"
+mysql -u Bob -p bobdata -e "SELECT * FROM SteveJobsQuotes LIMIT 5;"
 ```
 
 ---
@@ -131,7 +135,8 @@ cd ansible-control-node-setup
 # Run the web server setup
 ansible-playbook -i host.ini install_httpd.yaml
 
-# Run the database setup
+# Run the database setup (password comes from the environment)
+export MARIADB_USER_PASSWORD='<strong-password>'
 ansible-playbook -i host.ini install_mariadb.yaml
 ```
 
